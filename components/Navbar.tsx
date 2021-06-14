@@ -3,9 +3,7 @@ import Image from "next/image";
 import { useAuth } from "../stores/authContext";
 
 export default function Navbar() {
-  const val = useAuth();
-
-  console.log("##val: ", val);
+  const { user, Login, Logout } = useAuth();
 
   return (
     <div className="container">
@@ -22,6 +20,12 @@ export default function Navbar() {
             <Link href="/guides">
               <a>Guides</a>
             </Link>
+          </li>
+          <li onClick={Login} className="btn">
+            Login/Signup
+          </li>
+          <li onClick={Logout} className="btn">
+            Logout
           </li>
         </ul>
       </nav>

@@ -3,8 +3,8 @@ import netlifyIdentity from "netlify-identity-widget";
 
 interface iAuthenticated {
   user: Object;
-  login?: () => {};
-  logout?: () => {};
+  Login?: () => any;
+  Logout?: () => any;
   authReady?: boolean;
 }
 
@@ -14,12 +14,39 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // * init netlify idendity connection
+    netlifyIdentity.on("login", (user) => {
+      setUser(user);
+      netlifyIdentity.close();
+      console.log("log event");
+    });
+
+    netlifyIdentity.on("logout", () => {
+      setUser(null);
+      console.log("logout event");
+    });
+
     netlifyIdentity.init();
+
+    return () => {
+      netlifyIdentity.off("login");
+      netlifyIdentity.off("logout");
+    };
+
+    // * init netlify idendity connection
   }, []);
 
+  const Login = () => {
+    netlifyIdentity.open();
+  };
+
+  const Logout = () => {
+    netlifyIdentity.logout();
+  };
+
+  const context = { user, Login, Logout, authReady: !!user };
+
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
   );
 };
 
