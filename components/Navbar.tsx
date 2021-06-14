@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useAuth } from "../stores/authContext";
 
 export default function Navbar() {
-  const { user, Login, Logout } = useAuth();
+  const { user, Login, Logout, authReady } = useAuth();
 
   return (
     <div className="container">
@@ -21,12 +21,18 @@ export default function Navbar() {
               <a>Guides</a>
             </Link>
           </li>
-          <li onClick={Login} className="btn">
-            Login/Signup
-          </li>
-          <li onClick={Logout} className="btn">
-            Logout
-          </li>
+          {authReady ? (
+            <>
+              {/* <li>{user.email}</li> */}
+              <li onClick={Logout} className="btn">
+                Logout
+              </li>
+            </>
+          ) : (
+            <li onClick={Login} className="btn">
+              Login/Signup
+            </li>
+          )}
         </ul>
       </nav>
       <div className="banner">
