@@ -16,8 +16,6 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     netlifyIdentity.on("login", (user) => {
-      setUser(user);
-      setLoading(false);
       netlifyIdentity.close();
       console.log("log event");
     });
@@ -46,13 +44,13 @@ export const AuthContextProvider = ({ children }) => {
     netlifyIdentity.logout();
   };
 
-  if (loading) {
-    return (
-      <div>
-        <h1>LOADING...</h1>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div>
+  //       <h1>LOADING...</h1>
+  //     </div>
+  //   );
+  // }
 
   const context = { user, Login, Logout, authReady: !!user };
 
