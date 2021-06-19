@@ -2,7 +2,7 @@
   "version": 3,
   "sources": ["../../functions/guides.ts"],
   "sourceRoot": "/home/danilo/Documentos/Web/Projects/Web-Mobile-Projects/Front-End/NextJS/gaming-vibes/.netlify/functions-serve",
-  "sourcesContent": ["import React from \"react\";\n\nexports.handler = async (event: any, context: any) => {\n  const guides = [\n    { title: \"Beat all Zelda Bosses like a Boss\", author: \"mario\" },\n    { title: \"Mario kart Shortcuts You Never Knew Existed\", author: \"luigi\" },\n    { title: \"Ultimate Street Fighter Guide\", author: \"chu-li\" },\n  ];\n\n  return {\n    statusCode: 200,\n    body: JSON.stringify(guides),\n  };\n};\n"],
-  "mappings": ";AAEA,QAAQ,UAAU,OAAO,OAAY,YAAiB;AACpD,QAAM,SAAS;AAAA,IACb,CAAE,OAAO,qCAAqC,QAAQ;AAAA,IACtD,CAAE,OAAO,+CAA+C,QAAQ;AAAA,IAChE,CAAE,OAAO,iCAAiC,QAAQ;AAAA;AAGpD,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM,KAAK,UAAU;AAAA;AAAA;",
+  "sourcesContent": ["import React from \"react\";\n\nexports.handler = async (event: any, context: any) => {\n  const guides = [\n    { title: \"Beat all Zelda Bosses like a Boss\", author: \"mario\" },\n    { title: \"Mario kart Shortcuts You Never Knew Existed\", author: \"luigi\" },\n    { title: \"Ultimate Street Fighter Guide\", author: \"chu-li\" },\n  ];\n\n  if (context.clientContext.user) {\n    return {\n      statusCode: 200,\n      body: JSON.stringify(guides),\n    };\n  }\n\n  return {\n    statusCode: 401,\n    body: JSON.stringify({\n      msg: \"aaa, ah you must be logged in to see this  \",\n    }),\n  };\n};\n"],
+  "mappings": ";AAEA,QAAQ,UAAU,OAAO,OAAY,YAAiB;AACpD,QAAM,SAAS;AAAA,IACb,CAAE,OAAO,qCAAqC,QAAQ;AAAA,IACtD,CAAE,OAAO,+CAA+C,QAAQ;AAAA,IAChE,CAAE,OAAO,iCAAiC,QAAQ;AAAA;AAGpD,MAAI,QAAQ,cAAc,MAAM;AAC9B,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM,KAAK,UAAU;AAAA;AAAA;AAIzB,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM,KAAK,UAAU;AAAA,MACnB,KAAK;AAAA;AAAA;AAAA;",
   "names": []
 }

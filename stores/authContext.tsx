@@ -1,8 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import netlifyIdentity from "netlify-identity-widget";
 
+interface User {
+  id: string;
+  email: string;
+  token: { access_token: string };
+  user_metadata: { full_name: string };
+}
+
 interface iAuthenticated {
-  user: Object;
+  user: User;
   Login?: () => any;
   Logout?: () => any;
   authReady?: boolean;

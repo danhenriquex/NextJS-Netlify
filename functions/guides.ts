@@ -7,8 +7,17 @@ exports.handler = async (event: any, context: any) => {
     { title: "Ultimate Street Fighter Guide", author: "chu-li" },
   ];
 
+  if (context.clientContext.user) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify(guides),
+    };
+  }
+
   return {
-    statusCode: 200,
-    body: JSON.stringify(guides),
+    statusCode: 401,
+    body: JSON.stringify({
+      msg: "aaa, ah you must be logged in to see this  ",
+    }),
   };
 };
