@@ -45,7 +45,7 @@ export default function Guides() {
 
   return (
     <div className={styles.guides}>
-      {authReady && <div>Loading</div>}
+      {!authReady && <div>Loading</div>}
 
       {error && (
         <div className={styles.error}>
